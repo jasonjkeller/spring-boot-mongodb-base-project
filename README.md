@@ -2,6 +2,9 @@
 
 This application was developed to demonstrate Spring Boot with MongoDB with simple API.
 
+Two Docker containers are deployed, one for the Spring Boot service and the other for MongoDB.
+Additionally, the Spring Boot service is monitored by the New Relic Java agent.
+
 Technologies Used
 
 - Spring Boot 2.4.1
@@ -14,7 +17,7 @@ Technologies Used
 
 Update the `newrelic/newrelic.yml` file with a valid APM `license_key` to attach the New Relic Java agent.
 
-### Docker
+### Build and run with Docker
 
 Build application:
 ```shell
@@ -38,7 +41,7 @@ docker exec -it <container name> /bin/sh
 
 ### Usage
 
-The SpringBoot service is accessible at h`ttp://localhost:8080/` and MongoDB at `http://localhost:27017/`.
+The SpringBoot service is accessible at `http://localhost:8080/` and MongoDB at `http://localhost:27017/`.
 
 The container for the SpringBoot service also exposes port `5005` so that you can easily attach a debugger for the Java agent using Intellij. 
 
