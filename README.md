@@ -8,27 +8,48 @@ Technologies Used
 - Spring Data MongoDB
 - Lombok
 - MongoDB
+- New Relic Java agent
 
-How to Run this application
+### Requirements
 
-First change the **src/main/resources/application.properties** with your MongoDB instance properties.
+Update the `newrelic/newrelic.yml` file with a valid APM `license_key` to attach the New Relic Java agent.
 
-Then,
+### Docker
 
+Build application:
 ```shell
-$ ./gradlew bootRun
+./gradlew clean build
 ```
 
-or create a build using following command,
-
+Build and run docker containers:
 ```shell
-$ ./gradlew clean build
+docker-compose up --build -V
 ```
 
-Then start the JAR file using java
-
+View running containers:
 ```shell
-$ java -jar build/libs/spring-boot-mongodb-base-project-0.0.1-SNAPSHOT.jar
+docker ps
+```
+
+Get an interactive shell in a container:
+```shell
+docker exec -it <container name> /bin/sh
+```
+
+### Usage
+
+The SpringBoot service is accessible at h`ttp://localhost:8080/` and MongoDB at `http://localhost:27017/`.
+
+The container for the SpringBoot service also exposes port `5005` so that you can easily attach a debugger for the Java agent using Intellij. 
+
+POST data to MongoDB:
+```shell
+curl -X POST --location "http://localhost:8080/api/v1/product"
+```
+
+GET data from MongoDB:
+```shell
+curl -X GET --location "http://localhost:8080/api/v1/product"
 ```
 
 ### Related Articles
